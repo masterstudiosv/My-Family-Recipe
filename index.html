@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Family Recipe: Delicious Homemade Lasagna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: bold;
+        }
+
+        .hero-content p {
+            font-size: 1.3em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #d2691e;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #d2691e;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #d2691e;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #d2691e;
+            padding-bottom: 10px;
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ingredient-category {
+            background: #fff8f0;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .ingredient-category h3 {
+            color: #d2691e;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .ingredient-list {
+            list-style: none;
+        }
+
+        .ingredient-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .ingredient-list li:before {
+            content: "🥄";
+            position: absolute;
+            left: 0;
+        }
+
+        .ingredient-list li:last-child {
+            border-bottom: none;
+        }
+
+        .step {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #d2691e;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            left: -15px;
+            top: 20px;
+            background: #d2691e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .step h3 {
+            color: #d2691e;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+            margin-left: 20px;
+        }
+
+        .step p {
+            font-size: 1.1em;
+            margin-left: 20px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #d2691e;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+            color: #d2691e;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .image-placeholder:hover {
+            background: linear-gradient(45deg, #e9ecef, #dee2e6);
+            transform: scale(1.02);
+        }
+
+        .final-result {
+            background: linear-gradient(135deg, #d2691e, #cd853f);
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .final-result h2 {
+            color: white;
+            border-bottom: 3px solid white;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+        }
+
+        .final-image {
+            width: 100%;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border: 3px dashed white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .final-image:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.02);
+        }
+
+        .story-section {
+            background: #fff8f0;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .story-section:before {
+            content: "❤️";
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: white;
+            padding: 5px 10px;
+            font-size: 1.5em;
+        }
+
+        .story-section h2 {
+            color: #d2691e;
+            margin-bottom: 15px;
+        }
+
+        .story-section p {
+            font-style: italic;
+            font-size: 1.1em;
+            color: #5a5a5a;
+        }
+
+        .cooking-tips {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #28a745;
+            margin: 30px 0;
+        }
+
+        .cooking-tips h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .cooking-tips ul {
+            list-style-type: none;
+        }
+
+        .cooking-tips li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .cooking-tips li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2em;
+            }
+            
+            .recipe-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .ingredients-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .upload-hint {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <!-- IMAGEN PRINCIPAL: Foto de una lasaña hermosa como portada del blog -->
+        <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'); background-size: cover; background-position: center;">
+            <div class="hero-content">
+                <h1>My Family Recipe</h1>
+                <p>Delicious Homemade Lasagna</p>
+                <div style="margin-top: 15px; font-size: 1.1em; background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 25px; display: inline-block;">
+                    <strong>By: Marvin Josue Borja Hurtado | B2</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Recipe Meta Information -->
+            <div class="recipe-meta">
+                <div class="meta-item">
+                    <div class="meta-icon">⏱️</div>
+                    <div class="meta-label">Total Time</div>
+                    <div>45-60 minutes</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">👨‍👩‍👧‍👦</div>
+                    <div class="meta-label">Servings</div>
+                    <div>6-8 people</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-icon">⭐</div>
+                    <div class="meta-label">Difficulty</div>
+                    <div>Intermediate</div>
+                </div>
+            </div>
+
+            <!-- Ingredients Section -->
+            <section class="section">
+                <h2>🛒 Ingredients</h2>
+                
+                <div class="ingredients-grid">
+                    <div class="ingredient-category">
+                        <h3>For the pasta and base</h3>
+                        <ul class="ingredient-list">
+                            <li>A pack of <strong>lasagna sheets</strong></li>
+                            <li><strong>A little</strong> olive oil</li>
+                            <li><strong>Some</strong> butter</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ingredient-category">
+                        <h3>For the meat sauce</h3>
+                        <ul class="ingredient-list">
+                            <li><strong>Some</strong> ground beef</li>
+                            <li><strong>A few</strong> garlic cloves</li>
+                            <li><strong>Some</strong> onions</li>
+                            <li><strong>Many</strong> tomatoes (or tomato sauce)</li>
+                            <li><strong>A few</strong> basil leaves</li>
+                            <li><strong>A little</strong> sugar</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ingredient-category">
+                        <h3>For the white sauce and cheese</h3>
+                        <ul class="ingredient-list">
+                            <li><strong>Some</strong> flour</li>
+                            <li><strong>A little</strong> milk</li>
+                            <li><strong>Some</strong> mozzarella cheese</li>
+                            <li><strong>Some</strong> parmesan cheese</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ingredient-category">
+                        <h3>Seasonings</h3>
+                        <ul class="ingredient-list">
+                            <li><strong>Some</strong> salt</li>
+                            <li><strong>Some</strong> black pepper</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FOTO DE INGREDIENTES: Todos los ingredientes organizados en una mesa o superficie -->
+                <div class="image-placeholder" style="background-image: url('descarga\ \(2\).jpg'); background-size: cover; background-position: center; min-height: 200px;">
+                    <!-- Cambia la URL arriba por tu foto de ingredientes organizados -->
+                </div>
+            </section>
+
+            <!-- Steps Section -->
+            <section class="section">
+                <h2>👨‍🍳 Steps</h2>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Initial preparation</h3>
+                    <p><strong>First</strong>, peel and chop the onions and garlic. Cut the tomatoes into small pieces.</p>
+                    <!-- FOTO PASO 1: Vegetales picados (cebolla, ajo, tomates) en tabla de cortar -->
+                    <div class="image-placeholder" style="background-image: url('descarga\ \(1\).jpg'); background-size: cover; background-position: center; min-height: 200px;">
+                        <!-- Cambia la URL arriba por tu foto de vegetales picados -->
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Prepare the base</h3>
+                    <p><strong>Next</strong>, heat a little olive oil in a pan and add the chopped onions and garlic. Cook for a few minutes, then add the ground beef. Mix well until the meat is browned.</p>
+                    <!-- FOTO PASO 2: Carne molida dorándose en la sartén con cebolla y ajo -->
+                    <div class="image-placeholder" style="background-image: url('kk.jpg'); background-size: cover; background-position: center; min-height: 200px;">
+                        <!-- Cambia la URL arriba por tu foto de carne dorándose -->
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Create the tomato sauce</h3>
+                    <p><strong>Then</strong>, add the chopped tomatoes (or tomato sauce), a little sugar, some salt, some black pepper, and a few basil leaves. Let it cook for 10–15 minutes to make a delicious sauce.</p>
+                    <!-- FOTO PASO 3: Salsa de tomate roja cocinándose con albahaca y especias -->
+                    <div class="image-placeholder" style="background-image: url('images\ \(1\).jpg'); background-size: cover; background-position: center; min-height: 200px;">
+                        <!-- Cambia la URL arriba por tu foto de salsa de tomate -->
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Prepare white sauce</h3>
+                    <p><strong>Next</strong>, prepare the white sauce: melt some butter in a pan, add some flour, mix well, and slowly pour a little milk while stirring until the sauce becomes thick.</p>
+                    <!-- FOTO PASO 4: Salsa blanca cremosa y espesa en una sartén -->
+                    <div class="image-placeholder" style="background-image: url('descarga.jpg'); background-size: cover; background-position: center; min-height: 200px;">
+                        <!-- Cambia la URL arriba por tu foto de salsa blanca -->
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Layer assembly</h3>
+                    <p><strong>Then</strong>, in a baking dish, place a layer of lasagna sheets, then add a layer of meat sauce, a layer of white sauce, and some mozzarella cheese. Repeat the layers until the dish is full.</p>
+                    <!-- FOTO PASO 5: Proceso de armado mostrando las capas de la lasaña en el molde -->
+                    <div class="image-placeholder" style="background-image: url('pp.jpg'); background-size: cover; background-position: center; min-height: 200px;">
+                        <!-- Cambia la URL arriba por tu foto del armado de capas -->
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3>Baking</h3>
+                    <p><strong>Finally</strong>, sprinkle some parmesan cheese on top and bake for 25–30 minutes until golden and bubbly. Let it cool for a few minutes before serving.</p>
+                    <!-- FOTO PASO 6: Lasaña en el horno dorandose, o recién salida del horno -->
+                    <div class="image-placeholder" style="background-image: url('images.jpg'); background-size: cover; background-position: center; min-height: 200px;">
+                        <!-- Cambia la URL arriba por tu foto de lasaña en el horno -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cooking Tips -->
+            <div class="cooking-tips">
+                <h3>💡 Grandma's Tips</h3>
+                <ul>
+                    <li>Let the lasagna rest for 10 minutes before cutting to maintain its shape</li>
+                    <li>You can prepare the sauce the day before for better flavor</li>
+                    <li>If it's too watery, add a little more flour to the white sauce</li>
+                    <li>For extra flavor, add a little red wine to the meat sauce</li>
+                </ul>
+            </div>
+
+            <!-- Final Result -->
+            <div class="final-result">
+                <h2>🍽️ The Final Result</h2>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">
+                    A perfect lasagna, golden and bubbly, ready to share with family
+                </p>
+                
+                <!-- FOTO FINAL: La lasaña terminada, cortada, en un plato elegante lista para servir -->
+                <div class="final-image" style="background-image: url('lasaña\ terminaada.jpj.webp'); background-size: cover; background-position: center; min-height: 300px; border: 3px solid white; border-radius: 15px;">
+                    <!-- Cambia la URL arriba por tu foto de la lasaña terminada y servida -->
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 1.1em;">
+                    "A meal prepared with love always tastes better" - Grandma
+                </p>
+            </div>
+
+            <!-- Story Section -->
+            <div class="story-section">
+                <h2>💝 Why This Recipe Is Special</h2>
+                <p>
+                    This lasagna is special because it has been passed down from my grandmother. We make it for birthdays, 
+                    holidays, and family gatherings. It's more than just food—it's a taste of home. Each layer 
+                    tells a story, each ingredient carries the love of generations, and every bite connects us 
+                    with our family roots.
+                </p>
+                
+                <!-- FOTO FAMILIAR: Familia reunida comiendo la lasaña, momento especial en la mesa -->
+                <div class="image-placeholder" style="background-image: url('fami.jpg'); background-size: cover; background-position: center; min-height: 200px; margin-top: 20px;">
+                    <!-- Cambia la URL arriba por una foto de familia disfrutando la comida -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Remove all the upload image functionality since we're using direct URLs
+        // Images are now managed directly in the HTML with background-image URLs
+        
+        // Agregar efecto de hover a las imágenes
+        document.querySelectorAll('[style*="background-image"]').forEach(element => {
+            if (element.style.backgroundImage && element.style.backgroundImage !== 'url("")') {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+        });
+
+        // Animación de aparición para los pasos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar animación a los pasos
+        document.querySelectorAll('.step').forEach((step, index) => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(20px)';
+            step.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(step);
+        });
+    </script>
+</body>
+</html>
